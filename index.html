@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hao Gia - Portfolio</title>
+  <style>
+    :root{--grad: linear-gradient(90deg,#ff3b3b,#ffb800);} 
+    body{font-family:Inter,system-ui,Arial;margin:0;background:#f7f7f8;color:#222}
+    .container{max-width:1000px;margin:30px auto;padding:20px}
+    .card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 6px 22px rgba(0,0,0,0.08)}
+    .logo{width:90px;height:90px;object-fit:contain;border-radius:8px}
+    .slogan{background:var(--grad);-webkit-background-clip:text;color:transparent;font-weight:600}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+    .demo{height:120px;border:2px dashed #e6e6e6;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#9aa;}
+    .btn{display:inline-block;padding:10px 16px;border-radius:8px;color:#fff;text-decoration:none;background:var(--grad);}
+    nav{display:flex;gap:12px;align-items:center}
+    .lang{cursor:pointer;padding:6px 10px;border-radius:8px;background:#fff;border:1px solid #eee}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <img src="assets/logo.png" alt="Hao Gia" class="logo" />
+        <div>
+          <h1 style="margin:0;font-size:22px">Hao Gia</h1>
+          <div class="slogan">Thiết kế nhanh – Chuẩn đẹp – Hiện đại cùng AI</div>
+        </div>
+      </div>
+      <nav>
+        <div class="lang" onclick="switchLang('vi')">🇻🇳 VI</div>
+        <div class="lang" onclick="switchLang('en')">🇬🇧 EN</div>
+        <a class="btn" href="#contact">Thuê tôi</a>
+      </nav>
+    </header>
+
+    <div class="card" id="main-card">
+      <section id="home">
+        <p id="intro-vi">Xin chào! Mình là Hao Gia – người sáng tạo nội dung và thiết kế hình ảnh chuyên nghiệp, tập trung vào sự sáng tạo, tính thẩm mỹ và hiệu quả trong từng dự án.</p>
+        <p id="intro-en" style="display:none">Hi! I’m Hao Gia – a creative designer and content creator who focuses on aesthetics, originality, and efficiency in every project.</p>
+      </section>
+
+      <h3 id="services-title">Dịch vụ chính</h3>
+      <ul id="services-list">
+        <li>Thiết kế logo chuyên nghiệp</li>
+        <li>Bộ nhận diện thương hiệu (color palette, font)</li>
+        <li>Banners & Social Media</li>
+        <li>Business cards & print materials</li>
+      </ul>
+
+      <h3 id="portfolio-title">Bộ sưu tập (Demo)</h3>
+      <div class="grid" id="portfolio-grid">
+        <div class="demo">Demo image #1</div>
+        <div class="demo">Demo image #2</div>
+        <div class="demo">Demo image #3</div>
+        <div class="demo">Demo image #4</div>
+      </div>
+
+      <h3 id="contact">Liên hệ</h3>
+      <p id="contact-text">Email: your@email.com<br/>Zalo: https://zalo.me/your-number</p>
+    </div>
+
+    <p style="text-align:center;color:#999;margin-top:12px;font-size:12px">© 2025 Hao Gia</p>
+  </div>
+
+  <script>
+    function switchLang(l){
+      if(l==='en'){
+        document.getElementById('intro-vi').style.display='none';
+        document.getElementById('intro-en').style.display='block';
+        document.getElementById('services-title').innerText='Core Services';
+        document.getElementById('portfolio-title').innerText='Portfolio (Demo)';
+        document.getElementById('contact-text').innerHTML = 'Email: your@email.com<br/>Zalo: https://zalo.me/your-number';
+      } else {
+        document.getElementById('intro-vi').style.display='block';
+        document.getElementById('intro-en').style.display='none';
+        document.getElementById('services-title').innerText='Dịch vụ chính';
+        document.getElementById('portfolio-title').innerText='Bộ sưu tập (Demo)';
+        document.getElementById('contact-text').innerHTML = 'Email: your@email.com<br/>Zalo: https://zalo.me/your-number';
+      }
+    }
+  </script>
+</body>
+</html>
