@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hao Gia - Admin</title>
+  <style>
+    body{font-family:Inter,system-ui,Arial;margin:0;background:#fafafa;color:#111}
+    .wrap{max-width:900px;margin:24px auto;padding:20px}
+    .card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,#ff3b3b,#ffb800);color:#fff;text-decoration:none;border:none;cursor:pointer}
+    .field{margin:10px 0}
+    .preview{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+    .preview img{width:160px;height:120px;object-fit:cover;border-radius:8px}
+    .note{font-size:13px;color:#666;margin-top:8px}
+    .hidden{display:none}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.0/dist/jszip.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div id="loginCard" class="card">
+      <h2>Admin — Hao Gia</h2>
+      <p>Nhập mật khẩu để truy cập trang quản trị.</p>
+      <div class="field">
+        <input id="pwd" placeholder="Password" style="padding:8px;border-radius:8px;border:1px solid #ddd;width:220px" />
+        <button class="btn" onclick="doLogin()">Login</button>
+      </div>
+      <p class="note">Nếu chưa biết, hỏi chủ web. (Bạn đã nhận mật khẩu riêng)</p>
+    </div>
+
+    <div id="adminCard" class="card hidden">
+      <h2>Hao Gia — Content Manager</h2>
+      <p>Upload images for your portfolio gallery, preview them and download a ZIP to upload to GitHub.</p>
+
+      <div class="field">
+        <label class="btn">Choose images<input id="images" type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(event)" /></label>
+        <button class="btn" onclick="downloadZip()">Download ZIP</button>
+        <button class="btn" onclick="clearAll()">Clear</button>
+      </div>
+
+      <div class="preview" id="preview"></div>
+      <p class="note">Sau khi tải ZIP, giải nén và upload các file ảnh vào thư mục <code>assets/gallery/</code> trong GitHub repo, sau đó commit. Vercel sẽ redeploy tự động.</p>
+    </div>
+  </div>
+
+<script>
+  const PASSWORD = "haogia0625";
+  function doLogin(){
+    const v = document.getElementById('pwd').value;
+    if(v===PASSWORD){
+      document.getElementById('loginCard').classList.add('hidden');
+      document.getElementById('adminCard').classList.remove('hidden');
+    } else {
+      alert('Sai mật khẩu!');
+    }
+  }
+
+  let uploadedFiles = []; // File objects
+  function handleFiles(e){
+    const files = Array.from(e.target.files);
+    uploadedFiles = uploadedFiles.concat(files);
+    renderPreview();
+  }
+  function renderPreview(){
+    const p = document.getElementById('preview');
+    p.innerHTML='';
+    uploadedFiles.forEach((f, i)=>{
+      const url = URL.createObjectURL(f);
+      const img = document.createElement('img'); img.src = url;
+      img.title = f.name;
+      p.appendChild(img);
+    });
+  }
+  function clearAll(){
+    uploadedFiles = [];
+    renderPreview();
+  }
+
+  async function downloadZip(){
+    if(uploadedFiles.length===0){ alert('Chưa có ảnh nào để nén'); return; }
+    const zip = new JSZip();
+    uploadedFiles.forEach(f=> zip.file(f.name, f));
+    const content = await zip.generateAsync({type:"blob"});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(content);
+    a.download = 'haogia_gallery_images.zip';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  (function(){ document.getElementById('adminCard').classList.add('hidden'); })();
+</script>
+</body>
+</html>

@@ -1,32 +1,25 @@
-Hao Gia - Website (HTML + React)
+Hao Gia - Website with simple Admin
 
 Files included:
-- index.html  (lightweight single-page HTML version)
-- HaoGiaWebsite.jsx  (single-file React component for use in a React app)
-- assets/logo.png  (your logo or placeholder)
+- index.html  (site)  - title set to 'Hao Gia'
+- admin.html  (admin UI protected by password 'haogia0625')
+- assets/logo.png  (your logo)
+- assets/gallery/  (empty folder for gallery images)
 
-How to use:
+How the admin works:
+1. Open admin.html in your browser (or visit https://<your-site>/admin.html after deploy).
+2. Enter password: haogia0625
+3. Click 'Choose images' and select images from your computer.
+4. Preview images will show. Click 'Download ZIP' to get a ZIP containing selected images.
+5. On GitHub: open your repo > go to 'assets/gallery/' > upload the images (or upload the ZIP contents).
+6. Commit changes. Vercel will redeploy automatically and gallery images will appear on the site.
 
-Option A - Quick: open index.html locally
-1. Unzip the package, open index.html in a browser. Edit the contact placeholders in the file if needed.
+Notes:
+- The admin UI is client-side only: it helps you assemble images and create a ZIP to upload to GitHub.
+- For a full CMS that commits directly to GitHub, a more advanced setup (OAuth + serverless functions) is needed.
 
-Option B - Deploy to Vercel (recommended)
-1. Create a free Vercel account at https://vercel.com.
-2. Click 'New Project' -> 'Import' -> 'Upload' and select the unzipped folder or the .zip file.
-3. Vercel will detect a static site and deploy. After a few seconds you'll get a URL like https://haogia-username.vercel.app
-
-Option C - Use the React component
-1. Create a React app (npx create-react-app my-app)
-2. Replace src/App.jsx with HaoGiaWebsite.jsx (or import the component)
-3. Put assets/logo.png into public/ or import it correctly
-4. npm run build && deploy to Vercel or Netlify
-
-Placeholders:
-- Contact email and Zalo are placeholders (your@email.com, https://zalo.me/your-number). Replace them in index.html or in the React component.
-
-If you want, I can:
-- Create the .zip and provide a download link (done here)
-- Deploy it to Vercel for you (I can guide step-by-step)
-- Replace the placeholders with your real contact info
+If you want, I can also:
+- Upload the images into your GitHub repo for you (you'd need to add me as a collaborator or provide access token),
+  or I can give step-by-step instructions with screenshots to upload files via GitHub web UI.
 
 Enjoy!
