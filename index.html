@@ -1,124 +1,148 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hao Gia</title>
-  <style>
-    :root{--grad: linear-gradient(90deg,#ff3b3b,#ffb800);} 
-    body{font-family:Inter,system-ui,Arial;margin:0;background:#f7f7f8;color:#222}
-    .container{max-width:1000px;margin:30px auto;padding:20px}
-    .card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 6px 22px rgba(0,0,0,0.08)}
-    .logo{width:70px;height:70px;object-fit:contain;border-radius:8px}
-    .slogan{background:var(--grad);-webkit-background-clip:text;color:transparent;font-weight:600}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
-    .demo{height:160px;border:2px dashed #e6e6e6;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#9aa;}
-    .btn{display:inline-block;padding:10px 16px;border-radius:8px;color:#fff;text-decoration:none;background:var(--grad);}
-    nav{display:flex;gap:12px;align-items:center}
-    .lang{cursor:pointer;padding:6px 10px;border-radius:8px;background:#fff;border:1px solid #eee}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:12px}
-    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:8px}
-    header .top{display:flex;align-items:center;gap:14px}
-    footer{margin-top:16px;text-align:center;color:#999;font-size:12px}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hao Gia</title>
+<style>
+:root{--grad: linear-gradient(90deg,#ff3b3b,#ffb800);} 
+body{font-family:Inter,system-ui,Arial;margin:0;background:#f7f7f8;color:#222}
+.container{max-width:1200px;margin:30px auto;padding:20px} .card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 6px 22px rgba(0,0,0,0.08)}
+.logo{width:70px;height:70px;object-fit:contain;border-radius:8px}
+.slogan{background:var(--grad);-webkit-background-clip:text;color:transparent;font-weight:600}
+nav{display:flex;gap:12px;align-items:center}
+.lang{cursor:pointer;padding:6px 10px;border-radius:8px;background:#fff;border:1px solid #eee}
+.slider{position:relative;overflow:hidden;border-radius:12px;margin-top:12px;background:#111}
+.slide-track{display:flex;transition:transform 0.6s ease}
+.slide{min-width:100%;box-sizing:border-box;padding:20px;display:flex;justify-content:center;align-items:center}
+.slide img{max-width:100%;height:360px;object-fit:cover;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+.slider-controls{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;padding:0 12px;pointer-events:none}
+.btn{pointer-events:auto;background:linear-gradient(90deg,#ff3b3b,#ffb800);border:none;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer}
+.gallery-dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.dot{width:10px;height:10px;border-radius:50%;background:#ddd;cursor:pointer}
+.dot.active{background:#ff6b3b}
+@media (max-width:768px){ .slide img{height:220px} }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-      <div class="top">
-        <img src="assets/logo_new.png" alt="Hao Gia" class="logo" />
-        <div>
-          <h1 style="margin:0;font-size:22px">Hao Gia</h1>
-          <div class="slogan">Thiết kế nhanh – Chuẩn đẹp – Hiện đại cùng AI</div>
-        </div>
-      </div>
-      <nav>
-        <div class="lang" onclick="switchLang('vi')">🇻🇳 VI</div>
-        <div class="lang" onclick="switchLang('en')">🇬🇧 EN</div>
-        <a class="btn" href="/admin.html">Admin</a>
-      </nav>
-    </header>
-
-    <div class="card" id="main-card">
-      <section id="home">
-        <p id="intro-vi">Xin chào! Mình là Hao Gia – người sáng tạo nội dung và thiết kế hình ảnh chuyên nghiệp, tập trung vào sự sáng tạo, tính thẩm mỹ và hiệu quả trong từng dự án.</p>
-        <p id="intro-en" style="display:none">Hi! I’m Hao Gia – a creative designer and content creator who focuses on aesthetics, originality, and efficiency in every project.</p>
-      </section>
-
-      <h3 id="services-title">Dịch vụ chính</h3>
-      <ul id="services-list">
-        <li>Thiết kế logo chuyên nghiệp</li>
-        <li>Bộ nhận diện thương hiệu (color palette, font)</li>
-        <li>Banners & Social Media</li>
-        <li>Business cards & print materials</li>
-      </ul>
-
-      <h3 id="portfolio-title">Bộ sưu tập</h3>
-      <div class="gallery" id="gallery">
-        <!-- gallery images loaded here -->
-      </div>
-
-      <h3 id="contact">Liên hệ</h3>
-      <p id="contact-text">Email: your@email.com<br/>Zalo: https://zalo.me/your-number</p>
+<div class="container">
+<header style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+  <div style="display:flex;align-items:center;gap:14px">
+    <img src="assets/logo.png" alt="Hao Gia" class="logo" />
+    <div>
+      <h1 style="margin:0;font-size:22px">Hao Gia</h1>
+      <div class="slogan">Thiết kế nhanh – Chuẩn đẹp – Hiện đại cùng AI</div>
     </div>
-
-    <footer>© 2025 Hao Gia</footer>
   </div>
+  <nav>
+    <div class="lang" onclick="switchLang('vi')">🇻🇳 VI</div>
+    <div class="lang" onclick="switchLang('en')">🇬🇧 EN</div>
+  </nav>
+</header>
 
-  <script>
-    function switchLang(l){
-      if(l==='en'){
-        document.getElementById('intro-vi').style.display='none';
-        document.getElementById('intro-en').style.display='block';
-        document.getElementById('services-title').innerText='Core Services';
-        document.getElementById('portfolio-title').innerText='Portfolio';
-        document.getElementById('contact-text').innerHTML = 'Email: your@email.com<br/>Zalo: https://zalo.me/your-number';
-      } else {
-        document.getElementById('intro-vi').style.display='block';
-        document.getElementById('intro-en').style.display='none';
-        document.getElementById('services-title').innerText='Dịch vụ chính';
-        document.getElementById('portfolio-title').innerText='Bộ sưu tập';
-        document.getElementById('contact-text').innerHTML = 'Email: your@email.com<br/>Zalo: https://zalo.me/your-number';
-      }
+<main class="card">
+<section id="home">
+  <p id="intro-vi">Xin chào! Mình là Hao Gia – người sáng tạo nội dung và thiết kế hình ảnh chuyên nghiệp, tập trung vào sự sáng tạo, tính thẩm mỹ và hiệu quả trong từng dự án.</p>
+  <p id="intro-en" style="display:none">Hi! I’m Hao Gia – a creative designer and content creator who focuses on aesthetics, originality, and efficiency in every project.</p>
+</section>
+
+<section id="services">
+  <h2 class="lang-vi">Dịch vụ chính</h2>
+  <h2 class="lang-en" style="display:none;">Core Services</h2>
+  <ul class="lang-vi">
+    <li>Thiết kế logo chuyên nghiệp</li>
+    <li>Bộ nhận diện thương hiệu (color palette, font)</li>
+    <li>Banners &amp; Social Media</li>
+    <li>Business cards &amp; print materials</li>
+  </ul>
+  <ul class="lang-en" style="display:none;">
+    <li>Professional logo design</li>
+    <li>Brand identity (color palette, font)</li>
+    <li>Banners &amp; social media</li>
+    <li>Business cards &amp; print materials</li>
+  </ul>
+</section>
+
+<!-- Slider area (will show up to 50 images from assets/gallery) -->
+<section id="portfolio">
+  <h3 class="lang-vi">Bộ sưu tập</h3>
+  <h3 class="lang-en" style="display:none;">Portfolio</h3>
+  <div class="slider" id="slider">
+    <div class="slide-track" id="track"></div>
+    <div class="slider-controls">
+      <button class="btn" id="prevBtn">&#9664;</button>
+      <button class="btn" id="nextBtn">&#9654;</button>
+    </div>
+  </div>
+  <div class="gallery-dots" id="dots"></div>
+</section>
+
+<section id="contact" style="margin-top:18px">
+  <h3 class="lang-vi">Liên hệ</h3>
+  <h3 class="lang-en" style="display:none;">Contact</h3>
+  <p id="contact-text">Email: your@email.com<br/>Zalo: https://zalo.me/your-number</p>
+</section>
+</main>
+<footer style="text-align:center;color:#999;margin-top:18px">© 2025 Hao Gia</footer>
+</div>
+
+<script>
+// language switch
+function switchLang(l){ 
+  if(l==='en'){
+    document.querySelectorAll('.lang-vi').forEach(e=>e.style.display='none');
+    document.querySelectorAll('.lang-en').forEach(e=>e.style.display='block');
+  } else {
+    document.querySelectorAll('.lang-vi').forEach(e=>e.style.display='block');
+    document.querySelectorAll('.lang-en').forEach(e=>e.style.display='none');
+  }
+}
+
+// slider logic: load up to 50 images from assets/gallery named 1.jpg .. 50.jpg or list.json
+async function loadGallery(){
+  const track = document.getElementById('track');
+  const dots = document.getElementById('dots');
+  let images = [];
+  try{
+    const res = await fetch('assets/gallery/list.json');
+    if(res.ok){ images = await res.json(); }
+  }catch(e){}
+  if(images.length===0){
+    for(let i=1;i<=50;i++){
+      try{
+        const r = await fetch('assets/gallery/'+i+'.jpg',{method:'HEAD'});
+        if(r.ok) images.push('assets/gallery/'+i+'.jpg');
+      }catch(e){}
     }
-
-    (function(){
-      const galleryEl = document.getElementById('gallery');
-      fetch('assets/gallery/list.json').then(res=>{
-        if(!res.ok) throw new Error('no list');
-        return res.json();
-      }).then(list=>{
-        if(Array.isArray(list) && list.length){
-          list.forEach(src=>{
-            const img = document.createElement('img');
-            img.src = src;
-            galleryEl.appendChild(img);
-          });
-        } else {
-          showPlaceholders();
-        }
-      }).catch(()=>{
-        const defaultNames = ['1.jpg','2.jpg','3.jpg','4.jpg'];
-        let added=false;
-        defaultNames.forEach(n=>{
-          fetch('assets/gallery/'+n, {method:'HEAD'}).then(r=>{
-            if(r.ok){
-              const img=document.createElement('img'); img.src='assets/gallery/'+n; galleryEl.appendChild(img); added=true;
-            }
-          }).catch(()=>{});
-        });
-        setTimeout(()=>{ if(!added) showPlaceholders(); },300);
-      });
-
-      function showPlaceholders(){
-        for(let i=0;i<4;i++){
-          const div = document.createElement('div');
-          div.className='demo';
-          div.innerText = 'Demo image #' + (i+1);
-          galleryEl.appendChild(div);
-        }
-      }
-    })();
-  </script>
+  }
+  if(images.length===0){
+    // no images: show 5 placeholders (empty boxes)
+    for(let i=0;i<5;i++){ images.push(null); }
+  }
+  images.forEach((src, idx)=>{
+    const slide = document.createElement('div'); slide.className='slide';
+    if(src){
+      const img = document.createElement('img'); img.src=src; slide.appendChild(img);
+    } else {
+      const box = document.createElement('div'); box.style.width='80%'; box.style.height='320px'; box.style.border='2px dashed #e6e6e6'; box.style.borderRadius='8px'; box.style.display='flex'; box.style.alignItems='center'; box.style.justifyContent='center'; box.style.color='#aaa'; box.innerText='Demo image placeholder'; slide.appendChild(box);
+    }
+    track.appendChild(slide);
+    const dot = document.createElement('div'); dot.className='dot'; dot.dataset.index=idx; dots.appendChild(dot);
+  });
+  let current=0;
+  function show(i){
+    const w = document.getElementById('slider').clientWidth;
+    document.getElementById('track').style.transform = 'translateX('+(-i*w)+'px)';
+    document.querySelectorAll('.dot').forEach(d=>d.classList.remove('active'));
+    if(document.querySelectorAll('.dot')[i]) document.querySelectorAll('.dot')[i].classList.add('active');
+  }
+  window.addEventListener('resize', ()=>show(current));
+  document.getElementById('prevBtn').addEventListener('click', ()=>{ current = (current-1+document.querySelectorAll('.slide').length)%document.querySelectorAll('.slide').length; show(current); });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ current = (current+1)%document.querySelectorAll('.slide').length; show(current); });
+  document.querySelectorAll('.dot').forEach(d=>d.addEventListener('click', (e)=>{ current = parseInt(e.target.dataset.index); show(current); }));
+  setTimeout(()=>show(0),300);
+}
+loadGallery();
+</script>
 </body>
 </html>

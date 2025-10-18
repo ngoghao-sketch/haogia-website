@@ -1,25 +1,16 @@
-Hao Gia - Website with simple Admin
+Hao Gia - package ready for upload
 
 Files included:
-- index.html  (site)  - title set to 'Hao Gia'
-- admin.html  (admin UI protected by password 'haogia0625')
-- assets/logo.png  (your logo)
-- assets/gallery/  (empty folder for gallery images)
+- index.html
+- haogia-secret.html (admin, password: haogia0625)
+- assets/logo.png
+- assets/gallery/ (empty - upload your images here)
 
-How the admin works:
-1. Open admin.html in your browser (or visit https://<your-site>/admin.html after deploy).
-2. Enter password: haogia0625
-3. Click 'Choose images' and select images from your computer.
-4. Preview images will show. Click 'Download ZIP' to get a ZIP containing selected images.
-5. On GitHub: open your repo > go to 'assets/gallery/' > upload the images (or upload the ZIP contents).
-6. Commit changes. Vercel will redeploy automatically and gallery images will appear on the site.
+How to deploy:
+1. Upload all files/folders to your GitHub repo root so index.html is at the root and assets/ is present.
+2. Commit and let Vercel redeploy.
+3. To add images: open https://<your-site>/haogia-secret.html, enter password haogia0625, choose images, click 'Download ZIP', extract and upload files to assets/gallery/ in repo, commit.
 
 Notes:
-- The admin UI is client-side only: it helps you assemble images and create a ZIP to upload to GitHub.
-- For a full CMS that commits directly to GitHub, a more advanced setup (OAuth + serverless functions) is needed.
-
-If you want, I can also:
-- Upload the images into your GitHub repo for you (you'd need to add me as a collaborator or provide access token),
-  or I can give step-by-step instructions with screenshots to upload files via GitHub web UI.
-
-Enjoy!
+- Slider displays up to 50 images named 1.jpg..50.jpg or uses a list.json if provided.
+- This admin helper is client-side only (creates ZIP). For direct uploads to server, integrate Firebase/Supabase.
